@@ -32,7 +32,12 @@ public class BoardController {
             System.out.println("데이터 추가 성공!!!");
         return "redirect:list";
     }
-
+    @RequestMapping(value="/getform/{id}", method = RequestMethod.GET)
+    public String getPost(@PathVariable("id") int id, Model model) {
+        BoardVO boardVO = boardService.getBoard(id);
+        model.addAttribute("u", boardVO);
+        return "getform";
+    }
     @RequestMapping(value="/editform/{id}", method = RequestMethod.GET)
     public String editPost(@PathVariable("id") int id, Model model) {
         BoardVO boardVO = boardService.getBoard(id);
